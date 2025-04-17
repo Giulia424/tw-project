@@ -12,10 +12,21 @@ using MobyLabWebProgramming.Infrastructure.Services.Interfaces;
 using IGenreService = MobyLabWebProgramming.Infrastructure.Services.Interfaces.IGenreService;
 using IMovieService = MobyLabWebProgramming.Infrastructure.Services.Interfaces.IMovieService;
 
-// TODO: ADD ANOTHER MAILTRAP ACTION
 //Controllers: Handle HTTP requests/responses
 // Services: Implement business logic
 // Repositories: Handle data access
+
+//One-to-Many:
+// User -> Reviews
+// Movie -> Reviews
+// User -> Ratings
+// Movie -> Ratings
+// User -> WatchlistItems
+// Movie -> WatchlistItems
+// User -> UserFiles
+// Many-to-Many:
+// Movie <-> Genre (through MovieGenre)
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container

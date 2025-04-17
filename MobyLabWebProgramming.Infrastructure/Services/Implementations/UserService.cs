@@ -89,7 +89,7 @@ public class UserService(IRepository<WebAppDatabaseContext> repository, ILoginSe
             Password = user.Password
         }, cancellationToken); // A new entity is created and persisted in the database.
 
-        await mailService.SendMail(user.Email, "Welcome!", MailTemplates.UserAddTemplate(user.Name), true, "My App", cancellationToken); // You can send a notification on the user email. Change the email if you want.
+        await mailService.SendMail(user.Email, "Welcome!", EmailTemplates.WelcomeEmail(user.Name), true, "MobyLab Movie Platform", cancellationToken); // Send welcome email using EmailTemplates
 
         return ServiceResponse.ForSuccess();
     }
