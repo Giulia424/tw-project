@@ -29,7 +29,7 @@ public static class MailTemplates
                     <table style=""border-top: 2px solid #3c87be; width: 660px;"" border=""0"" cellspacing=""0"" cellpadding=""0"">
                         <tbody>
                             <tr>
-                                <td>Welcome to My App!</td>
+                                <td>Congratulations! You’re now officially part of MovieVerse, the ultimate movie platform for film buffs like you!</td>
                             </tr>
                         </tbody>
                     </table>

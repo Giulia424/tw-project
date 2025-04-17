@@ -2,14 +2,16 @@
 
 namespace MobyLabWebProgramming.Infrastructure.Services.Interfaces;
 
-/// <summary>
-/// This service can be used to send mails.
-/// </summary>
 public interface IMailService
 {
-    /// <summary>
-    /// This method sends a mail using a recipient email, subject and body for the message that can be HTML by isHtmlBody true and it can also add a alias for your sender.
-    /// </summary>
+ 
     public Task<ServiceResponse> SendMail(string recipientEmail, string subject, string body, bool isHtmlBody = false,
         string? senderTitle = null, CancellationToken cancellationToken = default);
+    
+    Task<ServiceResponse> SendWelcomeEmailAsync(string recipientEmail, string userName,
+        CancellationToken cancellationToken = default);
+
+   
+    Task<ServiceResponse> SendMovieAddedNotificationAsync(string recipientEmail, string movieTitle,
+        CancellationToken cancellationToken = default);
 }

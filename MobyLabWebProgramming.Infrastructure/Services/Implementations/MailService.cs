@@ -1,4 +1,4 @@
-﻿using System.Net;
+﻿﻿using System.Net;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
@@ -47,5 +47,59 @@ public class MailService(IOptions<MailConfiguration> mailConfiguration) : IMailS
         }
 
         return ServiceResponse.ForSuccess();
+    }
+
+
+   
+
+    // Sends a welcome email to a new user.
+    public async Task<ServiceResponse> SendWelcomeEmailAsync(string recipientEmail, string userName,
+        CancellationToken cancellationToken = default)
+    {
+        var subject = "Welcome to MobyLab Movie Platform!";
+        var body = $@"
+            <html>
+                <body style='font-family: Arial, sans-serif; color: #333;'>
+                    <h2>Hi {userName},</h2>
+                    <p>Welcome to <strong>MobyLab Movie Platform</strong>!</p>
+                    <p>We're excited to have you join our movie-loving community.</p>
+                    <p>Enjoy the show!<br/><em>The MobyLab Team</em></p>
+                </body>
+            </html>";
+
+        return await SendMail(recipientEmail, subject, body, true, cancellationToken: cancellationToken);;
+    }
+
+    // Sends a notification when a new movie is added to the database.
+    public async Task<ServiceResponse> SendMovieAddedNotificationAsync(string recipientEmail, string movieTitle,
+        CancellationToken cancellationToken = default)
+    {
+        var subject = "New Movie Added";
+        var body = $@"
+            <html>
+                <body style='font-family: Arial, sans-serif; color: #333;'>
+                    <h2>New Movie Added</h2>
+                    <p>The movie <strong>{movieTitle}</strong> has been added to our platform.</p>
+                    <p>Check it out now!</p>
+                </body>
+            </html>";
+
+        return await SendMail(recipientEmail, subject, body, true, cancellationToken: cancellationToken);
+    }
+
+    public async Task<ServiceResponse> SendMovieAddedToWatchlistNotificationAsync(string recipientEmail, string movieTitle,
+        CancellationToken cancellationToken = default)
+    {
+        var subject = "Movie Added to Watchlist";
+        var body = $@"
+            <html>
+                <body style='font-family: Arial, sans-serif; color: #333;'>
+                    <h2>Movie Added to Watchlist</h2>
+                    <p>The movie <strong>{movieTitle}</strong> has been added to your watchlist.</p>
+                    <p>Happy watching!</p>
+                </body>
+            </html>";
+
+        return await SendMail(recipientEmail, subject, body, true);
     }
 }
