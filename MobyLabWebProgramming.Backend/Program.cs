@@ -46,8 +46,8 @@ builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IWatchlistService, WatchlistService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 
-//builder.Services.AddScoped<IReviewService, ReviewService>();
 //builder.Services.AddScoped<IWatchlistService, WatchlistService>();
 
 // Configure the application
